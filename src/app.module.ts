@@ -6,8 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { User } from './mysql/model/user';
-import { UserModule } from './mysql/user/user.module';
+import { UserModule } from './mysql/user.module';
 
 @Module({
   imports: [

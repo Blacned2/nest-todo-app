@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { User } from '../model/user';
+import { User } from './model/user';
 import { UserService } from './user.service';
 
 @Controller('user')
-@ApiTags('User')
+@ApiTags('User mysql')
 export class UserController {
 
     constructor(

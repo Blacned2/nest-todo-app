@@ -5,7 +5,7 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 import { TodoService } from './todo.service';
 
 @Controller('todo')
-@ApiTags('Todo')
+@ApiTags('Todo mongodb')
 export class TodoController {
 
     constructor(private readonly todoService: TodoService){}
