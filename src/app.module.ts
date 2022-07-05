@@ -7,6 +7,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UserModule } from './mysql/user.module';
+import { IndexPageModule } from './mysql/index-page.module';
+import { IndexPageContent } from './mysql/model/index-page-content';
 
 @Module({
   imports: [
@@ -20,11 +22,12 @@ import { UserModule } from './mysql/user.module';
       username: `${process.env.MYSQL_USER}`,
       password: `${process.env.MYSQL_PASSWORD}`,
       database: 'nestDb',
-      // entities: [User],
+      entities: [IndexPageContent],
       autoLoadEntities:true,
       synchronize: false,
     }),
-    UserModule
+    UserModule,
+    IndexPageModule
   ],
   controllers: [AppController],
   providers: [AppService],

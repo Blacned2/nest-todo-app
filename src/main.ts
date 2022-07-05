@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 declare const module: any;
 
 // async function bootstrap() {
@@ -10,7 +12,7 @@ declare const module: any;
 // bootstrap();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {cors:true});
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors:true});
 
   const config = new DocumentBuilder()
     .setTitle('Todo example')
@@ -19,6 +21,10 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
 
   await app.listen(process.env.PORT);
 
